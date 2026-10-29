@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Historia clínica unificada · PMV1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <div>
+        <h1>Historia clínica unificada</h1>
+        <p class="sub">Prototipo PMV1 · interoperabilidad entre Minsa, EsSalud y clínica privada · <strong>datos 100 % ficticios</strong></p>
+      </div>
+      <div id="sistemas" class="sistemas" aria-label="Estado de los sistemas conectados"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card busqueda" aria-labelledby="t-buscar">
+      <h2 id="t-buscar">Consultar paciente</h2>
+      <form id="form-buscar" class="fila">
+        <label class="campo">
+          <span>DNI del paciente</span>
+          <input id="dni" inputmode="numeric" maxlength="8" placeholder="8 dígitos" autocomplete="off" required>
+        </label>
+        <label class="campo">
+          <span>Pacientes de demostración</span>
+          <select id="demo"><option value="">Elegir…</option></select>
+        </label>
+        <button class="btn primario" type="submit">Consultar historial</button>
+      </form>
+      <p id="msg" class="msg" role="status" hidden></p>
+    </section>
+
+    <div id="resultado" hidden>
+      <div class="grid">
+        <aside class="col-lado">
+          <section class="card" id="paciente"></section>
+          <section class="card" id="estabs"></section>
+          <section class="card" id="accesos-card"></section>
+        </aside>
+
+        <div class="col-main">
+          <section id="alertas"></section>
+          <section class="card pedido" aria-labelledby="t-pedido">
+            <h2 id="t-pedido">Pedir un examen</h2>
+            <p class="ayuda">Antes de ordenar un examen, el sistema revisa si ya existe uno reciente en cualquier establecimiento.</p>
+            <div class="fila">
+              <label class="campo grande">
+                <span>Examen</span>
+                <select id="examen"></select>
+              </label>
+              <button id="btn-pedido" class="btn" type="button">Evaluar pedido</button>
+            </div>
+            <div id="pedido-res" role="status"></div>
+          </section>
+          <section class="card" id="examenes"></section>
+          <div class="dos">
+            <section class="card" id="meds"></section>
+            <section class="card" id="alergias"></section>
+          </div>
+          <section class="card" id="conds"></section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="wrap pie">
+    PMV1 · Los sistemas simulados exponen FHIR R4 en
+    <a href="/sistemas/minsa/fhir/metadata">/sistemas/minsa/fhir</a>,
+    <a href="/sistemas/essalud/fhir/metadata">/sistemas/essalud/fhir</a> y
+    <a href="/sistemas/clinica/fhir/metadata">/sistemas/clinica/fhir</a> ·
+    <a href="/docs">documentación de la API</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

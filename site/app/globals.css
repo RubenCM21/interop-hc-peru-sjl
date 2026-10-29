@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/* Tokens semánticos. Un solo acento (verde azulado). Claro/oscuro por data-theme o preferencia del sistema. */
+:root {
+  color-scheme: light;
+  --bg: #f3f6f7; --surface: #ffffff; --surface-2: #e9eff2; --ink: #10202e; --muted: #526473; --line: #d5dee4;
+  --accent: #0a7c77; --accent-ink: #ffffff; --accent-soft: #dcf1ef; --accent-strong: #065c58;
+  --warn: #8f4305; --warn-bg: #fff2e1; --warn-line: #e3a259;
+  --danger: #a3271c; --danger-bg: #fdeceb; --danger-line: #e8a49d;
+  --ok: #22693a; --ok-bg: #e5f3e9; --ok-line: #9ccfae;
+  --minsa: #264f87; --essalud: #1d6040; --clinica: #85481a;
+  --shadow: 0 1px 2px rgb(16 32 46 / .06), 0 12px 32px rgb(16 32 46 / .07);
+  --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0a1520; --surface: #111e2a; --surface-2: #182a39; --ink: #e5edf2; --muted: #9db1bf; --line: #243746;
+    --accent: #4ccbc1; --accent-ink: #052321; --accent-soft: #123f3d; --accent-strong: #86e3db;
+    --warn: #f2b36f; --warn-bg: #3a2a15; --warn-line: #b57d3b;
+    --danger: #ff9d92; --danger-bg: #3c1c19; --danger-line: #8a3a33;
+    --ok: #86d49d; --ok-bg: #163524; --ok-line: #2f6b48;
+    --minsa: #9dbdf0; --essalud: #7fdcad; --clinica: #efbc8c;
+    --shadow: 0 1px 2px rgb(0 0 0 / .35), 0 12px 32px rgb(0 0 0 / .32);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0a1520; --surface: #111e2a; --surface-2: #182a39; --ink: #e5edf2; --muted: #9db1bf; --line: #243746;
+  --accent: #4ccbc1; --accent-ink: #052321; --accent-soft: #123f3d; --accent-strong: #86e3db;
+  --warn: #f2b36f; --warn-bg: #3a2a15; --warn-line: #b57d3b;
+  --danger: #ff9d92; --danger-bg: #3c1c19; --danger-line: #8a3a33;
+  --ok: #86d49d; --ok-bg: #163524; --ok-line: #2f6b48;
+  --minsa: #9dbdf0; --essalud: #7fdcad; --clinica: #efbc8c;
+  --shadow: 0 1px 2px rgb(0 0 0 / .35), 0 12px 32px rgb(0 0 0 / .32);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-strong: var(--accent-strong);
+  --color-warn: var(--warn);
+  --color-warn-bg: var(--warn-bg);
+  --color-warn-line: var(--warn-line);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-line: var(--danger-line);
+  --color-ok: var(--ok);
+  --color-ok-bg: var(--ok-bg);
+  --color-ok-line: var(--ok-line);
+  --color-minsa: var(--minsa);
+  --color-essalud: var(--essalud);
+  --color-clinica: var(--clinica);
+  --font-sans: var(--font-geist-sans), "Segoe UI", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, Consolas, monospace;
+  --radius-card: 14px;
+  --radius-ctl: 10px;
+  --shadow-card: var(--shadow);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); text-rendering: optimizeLegibility; }
+h1, h2, h3 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.12; }
+p { text-wrap: pretty; }
+:focus-visible { outline: none; box-shadow: var(--ring); border-radius: 6px; }
+::selection { background: color-mix(in srgb, var(--accent) 30%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* Esqueleto de carga */
+.sk { background: linear-gradient(100deg, var(--surface-2) 30%, color-mix(in srgb, var(--surface-2) 55%, var(--surface)) 50%, var(--surface-2) 70%); background-size: 220% 100%; border-radius: 8px; animation: sk 1.4s linear infinite; }
+@keyframes sk { to { background-position-x: -220%; } }
+
+/* Tabla de exámenes: apila filas en contenedores angostos */
+.tabla-ex { container-type: inline-size; }
+@container (max-width: 34rem) {
+  .tabla-ex thead { position: absolute; clip-path: inset(50%); inline-size: 1px; block-size: 1px; overflow: hidden; }
+  .tabla-ex tr { display: grid; grid-template-columns: 1fr; gap: .15rem; padding-block: .8rem; border-block-end: 1px solid var(--line); }
+  .tabla-ex td[data-label]::before { content: attr(data-label) ": "; color: var(--muted); font-size: .8rem; }
+  .tabla-ex td, .tabla-ex th { padding: 0 !important; border: 0 !important; }
+}
+
+/* Portada: fondo de puntos, trazo de ECG y entrada escalonada */
+.fondo-puntos {
+  background-image: radial-gradient(color-mix(in srgb, var(--ink) 16%, transparent) 1px, transparent 1.4px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 25% 35%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse 75% 70% at 25% 35%, #000 0%, transparent 75%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .entrada { animation: subir 0.8s var(--ease-out-expo) both; animation-delay: var(--d, 0s); }
+}
+@keyframes subir { from { opacity: 0; transform: translateY(14px); } }
+
+/* Cinta de casos: se mueve sola, se pausa con el mouse o el foco y no usa barra de desplazamiento */
+.marquee { position: relative; overflow: hidden; }
+.marquee::before, .marquee::after { content: ""; position: absolute; inset-block: 0; inline-size: clamp(2rem, 8vw, 7rem); z-index: 1; pointer-events: none; }
+.marquee::before { inset-inline-start: 0; background: linear-gradient(to right, var(--bg), transparent); }
+.marquee::after { inset-inline-end: 0; background: linear-gradient(to left, var(--bg), transparent); }
+.marquee-track { display: flex; gap: 1rem; width: max-content; padding-block: 0.5rem 1.25rem; will-change: transform; animation: cinta 60s linear infinite; animation-play-state: paused; }
+[data-vista="true"] .marquee-track { animation-play-state: running; }
+[data-vista="true"] .marquee:hover .marquee-track, [data-vista="true"] .marquee:focus-within .marquee-track { animation-play-state: paused; }
+@keyframes cinta { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(calc(-50% - 0.5rem), 0, 0); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee::before, .marquee::after { display: none; }
+  .marquee-track { animation: none; width: min(100% - 2.5rem, 1200px); margin-inline: auto; }
+  .marquee-track ul { flex-wrap: wrap; }
+  .marquee-dup { display: none; }
+}
+
+/* Flujo del diagrama: línea punteada que avanza solo si el bloque se ve y se permite movimiento */
+.linea-flujo { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 2 8; stroke-linecap: round; }
+@media (prefers-reduced-motion: no-preference) { [data-vista="true"] .linea-flujo { animation: fluye 1s linear infinite; } }
+@keyframes fluye { to { stroke-dashoffset: -10; } }

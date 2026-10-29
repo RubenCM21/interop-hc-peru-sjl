@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Historia clínica unificada | interop-hc-peru</title>
+  <meta name="description" content="Prototipo que unifica el historial de un paciente entre Minsa, EsSalud y clínicas, y avisa antes de repetir exámenes. Datos ficticios.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/geist-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/geist-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/app.css">
+  <script>try { const t = localStorage.getItem("tema"); if (t) document.documentElement.dataset.theme = t; } catch {}</script>
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#principal">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="#/" aria-label="interop-hc-peru, inicio">interop<b>-</b>hc<b>-</b>peru</a>
+      <nav class="nav" aria-label="Principal">
+        <a href="#/" data-nav="inicio">Inicio</a>
+        <a href="#/visor" data-nav="visor">Visor</a>
+        <button class="icon-btn" id="tema" type="button" aria-label="Cambiar entre tema claro y oscuro">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-moon"></use></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+  <main id="principal" tabindex="-1"></main>
+  <footer class="site-footer">
+    <div class="wrap cols">
+      <div>
+        <strong>interop-hc-peru</strong>
+        <p>Prototipo del curso TE111U Innovación y Gestión Tecnológica, UNI-FIIS. Grupo C.</p>
+        <ul>
+          <li>Chu-Lau Yllescas, Rafael Andrés</li>
+          <li>Condori Mamani, Ruben Alcides</li>
+          <li>Diaz Vergaray, Edward José</li>
+        </ul>
+      </div>
+      <div>
+        <strong>Datos</strong>
+        <p>Los establecimientos provienen de <a href="https://www.datosabiertos.gob.pe/dataset/registro-nacional-de-entidades-prestadoras-de-servicios-de-salud-renipress" rel="noopener">RENIPRESS (SUSALUD, sep. 2026)</a>. Los pacientes y sus registros son ficticios.</p>
+        <p><a href="https://github.com/RafaelCly/interop-hc-peru" rel="noopener">Código en GitHub</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
